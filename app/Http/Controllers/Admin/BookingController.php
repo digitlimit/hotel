@@ -8,6 +8,7 @@ use App\Http\Requests\Booking\UpdateRequest;
 use App\Http\Requests\Booking\FilterRequest;
 
 use App\Models\Booking;
+use App\Transformers\BookingTransformer;
 
 class BookingController extends Controller
 {
@@ -19,8 +20,11 @@ class BookingController extends Controller
     public function index()
     {
         $bookings = Booking::orderBy('id', 'DESC')
-            ->paginate(request()->limit ? request()->limit : 15);
+        ->paginate(request()->limit ? request()->limit : 15);
 
+        return fractal($bookings, new BookingTransformer())
+            ->withResourceName('bookings')
+            ->respond(200);
     }
 
     public function filter(FilterRequest $request)
