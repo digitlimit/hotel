@@ -1,6 +1,7 @@
 /node_modules
 /public
 /public/storage
+/storage/logs
 /vendor
 .env
 .env.backup
