@@ -54,4 +54,13 @@ class Price extends Model
      */
     protected $casts = [];
 
+    /**
+     * Room Type - Price based on room type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function room_type()
+    {
+        return $this->belongsTo(RoomType::class);
+    }
 }

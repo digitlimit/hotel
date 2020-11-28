@@ -47,4 +47,24 @@ class RoomType extends Model
      * @var array
      */
     protected $casts = [];
+
+    /**
+     * Rooms
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function rooms()
+    {
+        return $this->hasMany(Room::class, 'room_type_id');
+    }
+
+    /**
+     * Price
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function price()
+    {
+        return $this->hasOne(Price::class, 'room_type_id');
+    }
 }

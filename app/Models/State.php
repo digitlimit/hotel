@@ -47,4 +47,14 @@ class State extends Model
      * @var array
      */
     protected $casts = [];
+
+    /**
+     * Get state's country
+     *
+     * @return BelongsTo
+     */
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_code', 'code');
+    }
 }

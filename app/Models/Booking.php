@@ -58,5 +58,23 @@ class Booking extends Model
      */
     protected $casts = [];
 
+    /**
+     * Room - Booking has one related room
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
+     */
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
 
+    /**
+     * User - Booking belongs to a User
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -51,4 +51,25 @@ class Room extends Model
      * @var array
      */
     protected $casts = [];
+
+    /**
+     * Room Type
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function room_type()
+    {
+        return $this->belongsTo(RoomType::class);
+    }
+
+
+    /**
+     * Hotel
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function hotel()
+    {
+        return $this->belongsTo(Hotel::class);
+    }
 }

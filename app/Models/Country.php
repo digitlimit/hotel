@@ -47,4 +47,13 @@ class Country extends Model
      */
     protected $casts = [];
 
+    /**
+     * State - Country has many related states
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function state()
+    {
+        return $this->hasMany(State::class, 'country_code');
+    }
 }

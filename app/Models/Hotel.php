@@ -72,6 +72,12 @@ class Hotel extends Model
      */
     protected $casts = [];
 
-
-
+    /**
+     * Rooms
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function rooms()
+    {
+        return $this->hasMany(Room::class);
+    }
 }
