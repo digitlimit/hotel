@@ -7,6 +7,7 @@ use Faker\Factory as Faker;
 use DB;
 use Carbon\Carbon;
 use App\Helpers\BookingHelper;
+use App\Helpers\TestHelper;
 
 class BookingsTableSeeder extends Seeder
 {
@@ -21,18 +22,20 @@ class BookingsTableSeeder extends Seeder
         //TODO: so we could assert in tests
         DB::table('bookings')->delete();
 
-        $dates = [
-            ['start' => '2019-06-29', 'end' => '2019-06-30'],
-            ['start' => '2019-07-01', 'end' => '2019-07-05'],
-            ['start' => '2019-07-06', 'end' => '2019-07-09'],
-            ['start' => '2019-07-10', 'end' => '2019-07-13'],
-            ['start' => '2019-07-15', 'end' => '2019-07-16'],
-            ['start' => '2019-07-17', 'end' => '2019-07-19'],
-            ['start' => '2019-07-20', 'end' => '2019-07-22'],
-            ['start' => '2019-07-23', 'end' => '2019-07-24'],
-            ['start' => '2019-07-25', 'end' => '2019-07-28'],
-            ['start' => '2019-07-29', 'end' => '2019-07-30']
-        ];
+        // $dates = [
+        //     ['start' => '2020-11-29', 'end' => '2020-06-30'],
+        //     ['start' => '2020-12-01', 'end' => '2020-12-05'],
+        //     ['start' => '2020-12-06', 'end' => '2020-12-09'],
+        //     ['start' => '2020-12-10', 'end' => '2020-12-13'],
+        //     ['start' => '2020-12-15', 'end' => '2020-12-16'],
+        //     ['start' => '2020-12-17', 'end' => '2020-12-19'],
+        //     ['start' => '2020-12-20', 'end' => '2020-12-22'],
+        //     ['start' => '2020-12-23', 'end' => '2020-12-24'],
+        //     ['start' => '2020-12-25', 'end' => '2020-12-28'],
+        //     ['start' => '2020-12-29', 'end' => '2020-12-30']
+        // ];
+
+        $dates = TestHelper::bookingDates();
 
         DB::table('bookings')->insert([
             [

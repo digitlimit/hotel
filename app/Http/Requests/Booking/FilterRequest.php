@@ -13,7 +13,29 @@ class FilterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Set custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+        ];
+    }
+
+    /**
+     * Set custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+        ];
     }
 
     /**
@@ -24,7 +46,8 @@ class FilterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'month'      => 'required|size:2|between:1,12',
+            'year'       => 'required|size:4',
         ];
     }
 }

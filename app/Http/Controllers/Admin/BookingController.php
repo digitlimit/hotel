@@ -9,6 +9,7 @@ use App\Http\Requests\Booking\FilterRequest;
 
 use App\Models\Booking;
 use App\Transformers\BookingTransformer;
+use App\Helpers\TestHelper;
 
 class BookingController extends Controller
 {
@@ -27,6 +28,12 @@ class BookingController extends Controller
             ->respond(200);
     }
 
+    /**
+     * Filter bookings
+     *
+     * @param FilterRequest $request
+     * @return \Illuminate\Http\Response
+     */
     public function filter(FilterRequest $request)
     {
         $bookings = Booking::orderBy('id', 'DESC')
@@ -34,7 +41,9 @@ class BookingController extends Controller
             ->whereMonth('start_date', '=', $request->month)
             ->get();
 
-
+        return fractal($bookings, new BookingTransformer())
+            ->withResourceName('bookings')
+            ->respond(200);
     }
 
     /**
@@ -45,7 +54,15 @@ class BookingController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $booking = Booking::create($request->all());
+        if($booking = Booking::create($request->all())){
+
+            $booking = fractal($booking, new BookingTransformer())
+                ->withResourceName('bookings')->toArray();
+
+            return $this->apiStoreResponse($booking);
+        }
+
+        return $this->apiErrorResponse('unprocessable_entity');
     }
 
     /**
@@ -58,8 +75,11 @@ class BookingController extends Controller
     {
         //throw an exception 404 if not found
         $booking = Booking::findOrFail($id);
-    }
 
+        return fractal($booking, new BookingTransformer())
+            ->withResourceName('bookings')
+            ->respond(200);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -73,13 +93,21 @@ class BookingController extends Controller
         //throw an exception 404 if not found
         $booking = Booking::findOrFail($id);
 
-        $bookings = $booking->update($request->all());
+        if($booking->update($request->all())){
+
+            $booking = fractal($booking, new BookingTransformer())
+                ->withResourceName('bookings')->toArray();
+
+            return $this->apiUpdateResponse($booking);
+        }
+
+        return $this->apiErrorResponse('unprocessable_entity');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
