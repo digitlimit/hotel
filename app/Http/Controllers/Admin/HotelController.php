@@ -5,9 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Hotel\StoreRequest;
 use App\Http\Requests\Hotel\UpdateRequest;
-use App\Http\Requests\Hotel\FilterRequest;
 
 use App\Models\Hotel;
+use App\Transformers\HotelTransformer;
+use App\Helpers\UploadHelper;
 
 class HotelController extends Controller
 {
@@ -18,14 +19,11 @@ class HotelController extends Controller
      */
     public function index()
     {
-        $hotels = Hotel::orderBy('id', 'DESC')
-            ->paginate(request()->limit ? request()->limit : 15);
+        $hotels = Hotel::paginate();
 
-    }
-
-    public function filter(FilterRequest $request)
-    {
-
+        return fractal($hotels, new HotelTransformer())
+            ->withResourceName('hotels')
+            ->respond(200);
     }
 
     /**
@@ -36,21 +34,32 @@ class HotelController extends Controller
      */
     public function store(StoreRequest $request)
     {
-        $hotel = Hotel::create($request->all());
+        if($hotel = Hotel::create($request->all())){
+
+            $hotel = fractal($hotel, new HotelTransformer())
+                ->withResourceName('hotels')->toArray();
+
+            return $this->apiStoreResponse($hotel);
+        }
+
+        return $this->apiErrorResponse('unprocessable_entity');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //throw an exception 404 if not found
         $hotel = Hotel::findOrFail($id);
-    }
 
+        return fractal($hotel, new HotelTransformer())
+            ->withResourceName('hotels')
+            ->respond(200);
+    }
 
     /**
      * Update the specified resource in storage.
@@ -64,13 +73,29 @@ class HotelController extends Controller
         //throw an exception 404 if not found
         $hotel = Hotel::findOrFail($id);
 
-        $hotels = $hotel->update($request->all());
+        //data
+        $data = $request->all();
+
+        //upload image
+        if($request->image){
+            $data['image'] = UploadHelper::uploadHotelImage($request->image);
+        }
+
+        if($hotel->update($data)){
+
+            $hotel = fractal($hotel, new HotelTransformer())
+                ->withResourceName('hotels')->toArray();
+
+            return $this->apiUpdateResponse($hotel);
+        }
+
+        return $this->apiErrorResponse('unprocessable_entity');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param int $id
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

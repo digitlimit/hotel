@@ -13,8 +13,32 @@ class UpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
+
+    /**
+     * Set custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+        ];
+    }
+
+    /**
+     * Set custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'image'           => 'Hotel Image',
+        ];
+    }
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -24,7 +48,14 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'              => 'required|string',//TODO: validate hotel name
+            'address'           => 'required|string', //TODO: validate US address
+            'city'              => 'required|string', //TODO:
+            'state'             => 'required|exists:states,name',
+            'country'           => 'required|exists:countries,name',
+            'zip_code'          => 'nullable|string', //TODO:
+            'email'             => 'required|email',
+            'image'             => 'nullable|mimetypes:image/gif,image/jpeg,image/png'
         ];
     }
 }
