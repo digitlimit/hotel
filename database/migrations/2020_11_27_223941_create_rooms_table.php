@@ -18,7 +18,8 @@ class CreateRoomsTable extends Migration
             $table->integer('hotel_id');//Hotel ID : [room belongsTo hotel]
             $table->integer('room_type_id');//Room Type : ID of room type [room hasOne room_type]
             $table->string('name');//Room Name (e.g. A1, B2, C4)
-            $table->integer('room_capacity_id');//Room Capacity : ID of room capacity [room hasOne room_capacity]
+            //@todo create room capacities table
+            //$table->integer('room_capacity_id');//Room Capacity : ID of room capacity [room hasOne room_capacity]
             $table->string('image')->nullable();
             $table->timestamps();
             $table->softDeletes();
