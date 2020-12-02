@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Price;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreRequest extends FormRequest
 {
@@ -13,7 +14,35 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Set custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'room_type_id.unique' => 'Room Type already exists in Prices',
+            'room_type_id.exists' => 'Room Type does not exists',
+            'currency.in'         => 'Currency MUST be USD'
+        ];
+    }
+
+    /**
+     * Set custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'room_type_id'      => 'Room Type',
+            'amount'            => 'Amount',
+            'currency'          => 'Currency'
+        ];
     }
 
     /**
@@ -24,7 +53,9 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'room_type_id'      => 'required|numeric|exists:room_types,id|unique:prices,room_type_id',
+            'amount'            => 'required|numeric',
+            'currency'          => ['nullable', Rule::in(['USD'])],
         ];
     }
 }

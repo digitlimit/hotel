@@ -3,17 +3,46 @@
 namespace App\Http\Requests\Price;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateRequest extends FormRequest
 {
-    /**
+   /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Set custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'room_type_id.unique' => 'Room Type already exists in Prices',
+            'room_type_id.exists' => 'Room Type does not exists',
+            'currency.in'         => 'Currency MUST be USD'
+        ];
+    }
+
+    /**
+     * Set custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'room_type_id'      => 'Room Type',
+            'amount'            => 'Amount',
+            'currency'          => 'Currency'
+        ];
     }
 
     /**
@@ -24,7 +53,12 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'amount'            => 'required|numeric',
+            'currency'          => ['nullable', Rule::in(['USD'])],
+            'room_type_id'      => [
+                'required', 'numeric', 'exists:room_types,id',
+                Rule::unique('prices')->ignore($this->route('price'), 'id'),
+            ],
         ];
     }
 }
