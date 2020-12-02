@@ -76,7 +76,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'A1',
                 'room_type_id'      => $this->roomTypeId('Standard'),
-                'room_capacity_id'  => $this->roomCapacityId('Standard'),
+                //'room_capacity_id'  => $this->roomCapacityId('Standard'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/1/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -86,7 +86,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'A2',
                 'room_type_id'      => $this->roomTypeId('Deluxe'),
-                'room_capacity_id'  => $this->roomCapacityId('Deluxe'),
+                //'room_capacity_id'  => $this->roomCapacityId('Deluxe'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/2/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -96,7 +96,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'A3',
                 'room_type_id'      => $this->roomTypeId('Superior'),
-                'room_capacity_id'  => $this->roomCapacityId('Superior'),
+                //'room_capacity_id'  => $this->roomCapacityId('Superior'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/2/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -106,7 +106,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'B1',
                 'room_type_id'      => $this->roomTypeId('Premier'),
-                'room_capacity_id'  => $this->roomCapacityId('Premier'),
+                //'room_capacity_id'  => $this->roomCapacityId('Premier'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/4/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -116,7 +116,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'B2',
                 'room_type_id'      => $this->roomTypeId('Dazzle'),
-                'room_capacity_id'  => $this->roomCapacityId('Dazzle'),
+                //'room_capacity_id'  => $this->roomCapacityId('Dazzle'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/5/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -126,7 +126,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'B3',
                 'room_type_id'      => $this->roomTypeId('Duke'),
-                'room_capacity_id'  => $this->roomCapacityId('Duke'),
+                //'room_capacity_id'  => $this->roomCapacityId('Duke'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/6/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -136,7 +136,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'C1',
                 'room_type_id'      => $this->roomTypeId('Prestige'),
-                'room_capacity_id'  => $this->roomCapacityId('Prestige'),
+                //'room_capacity_id'  => $this->roomCapacityId('Prestige'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/7/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -146,7 +146,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'C2',
                 'room_type_id'      => $this->roomTypeId('Honeymoon'),
-                'room_capacity_id'  => $this->roomCapacityId('Honeymoon'),
+                //'room_capacity_id'  => $this->roomCapacityId('Honeymoon'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/8/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -156,7 +156,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'C3',
                 'room_type_id'      => $this->roomTypeId('Super Deluxe'),
-                'room_capacity_id'  => $this->roomCapacityId('Super Deluxe'),
+                //'room_capacity_id'  => $this->roomCapacityId('Super Deluxe'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/9/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
@@ -166,7 +166,7 @@ class RoomsTableSeeder extends Seeder
             [
                 'name'              => 'D1',
                 'room_type_id'      => $this->roomTypeId('Prime Deluxe'),
-                'room_capacity_id'  => $this->roomCapacityId('Prime Deluxe'),
+                //'room_capacity_id'  => $this->roomCapacityId('Prime Deluxe'),
                 'hotel_id'          => $this->hotelId(),
                 'image'             => 'rooms/10/room.jpg',
                 'created_at'        => date('Y-m-d H:i:s'),
