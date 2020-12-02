@@ -13,7 +13,31 @@ class StoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
+    }
+
+    /**
+     * Set custom messages for validator errors.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Room Type name already exists',
+        ];
+    }
+
+    /**
+     * Set custom attributes for validator errors.
+     *
+     * @return array
+     */
+    public function attributes()
+    {
+        return [
+            'name'              => 'Room Type name',
+        ];
     }
 
     /**
@@ -24,7 +48,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name'              => 'required|string|unique:room_types,name',
         ];
     }
 }
