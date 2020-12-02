@@ -50,7 +50,7 @@ class PricesTableSeeder extends Seeder
             [
                 'room_type_id'      => $this->roomTypeId('Standard'),
                 'currency'          => config('global.default_currency'),
-                'amount'            => 50.00,
+                'amount'            => 50.10,
                 'created_at'        => date('Y-m-d H:i:s'),
                 'updated_at'        => date('Y-m-d H:i:s'),
             ],
@@ -114,7 +114,7 @@ class PricesTableSeeder extends Seeder
             [
                 'room_type_id'      => $this->roomTypeId('Super Deluxe'),
                 'currency'          => config('global.default_currency'),
-                'amount'             => 450.00,
+                'amount'             => 450.60,
                 'created_at'        => date('Y-m-d H:i:s'),
                 'updated_at'        => date('Y-m-d H:i:s'),
             ],
