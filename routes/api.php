@@ -53,6 +53,38 @@ Route::name('api.v1.')
         ])
         ->only(['index', 'show', 'store',  'update', 'destroy']);
 
+        //Prices  API Endpoints
+        Route::resource('price', 'PriceController')
+        ->names([
+            'index'     => 'prices.index',
+            'show'      => 'prices.show',
+            'store'     => 'prices.store',
+            'update'    => 'prices.update',
+            'destroy'   => 'prices.destroy'
+        ])
+        ->only(['index', 'show', 'store',  'update', 'destroy']);
+
+        //Rooms API Endpoints
+        Route::resource('room', 'RoomController')
+        ->names([
+             'index'     => 'rooms.index',
+             'show'      => 'rooms.show',
+             'store'     => 'rooms.store',
+             'update'    => 'rooms.update',
+             'destroy'   => 'rooms.destroy'
+        ])
+        ->only(['index', 'show', 'store',  'update', 'destroy']);
+
+        //Room Types API Endpoints
+        Route::resource('room-types', 'RoomTypeController')
+        ->names([
+             'index'     => 'room_types.index',
+             'show'      => 'room_types.show',
+             'store'     => 'room_types.store',
+             'update'    => 'room_types.update',
+             'destroy'   => 'room_types.destroy'
+        ])
+        ->only(['index', 'show', 'store',  'update', 'destroy']);
 
     });
 });
