@@ -20,6 +20,12 @@ class BookingController extends Controller
      */
     public function index()
     {
+        $user = \App\Models\User::find(1);
+
+        $token = $user->createToken('token-name');
+
+        return $token->plainTextToken;
+
         $bookings = Booking::orderBy('id', 'DESC')
         ->paginate(request()->limit ? request()->limit : 15);
 
